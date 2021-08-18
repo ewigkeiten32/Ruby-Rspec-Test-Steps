@@ -1,5 +1,5 @@
 class Sandwhich
-  attr_reader :taste
+  attr_reader :taste, :toppings
 
   def initialize(taste, toppings)
     @taste = taste

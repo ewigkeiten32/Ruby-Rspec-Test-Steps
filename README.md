@@ -76,6 +76,7 @@ Run ```rspec``` again
 You should see the error ```undefined method `taste' for #<Sandwhich:0x00```  
 Make ```taste``` readable  
 You should then have the following: 
+
 ```ruby 
 class Sandwhich
   attr_reader :taste
@@ -88,3 +89,59 @@ end
 ```  
 
 Run ```rspec``` again and look at that green!
+
+### A little refactor with Hooks
+There will be multiple tests that use an instance of the Sandwhich object.  
+Rather than writing 
+```ruby
+sandwhich = Sandwhich.new('delicious', [])
+```
+multiple times we will refactor it into something called a Hook, specifically the *before* hook  
+Refactor the spec to look like the below:  
+
+```ruby
+RSpec.describe 'An ideal sandwhich' do
+  before { @sandwhich = Sandwhich.new('delicious', []) }
+
+  it 'is delicious' do
+    taste = @sandwhich.taste
+    expect(taste).to eq('delicious')
+  end
+end
+```  
+
+Note that we are using the @ instance of sandwhich within the ```it``` block  
+The ```before``` hook will run before any examples in the spec file
+
+
+### Add another test
+Let's add another test.  
+Below the first ```it``` block, add:  
+```ruby
+  it 'should have toppings' do
+    toppings = @sandwhich.toppings
+    expect(toppings).not_to be_empty
+  end
+```
+
+Running ```rspec``` now, you will see there is one test passing (```is delicious```) and one that is failing (```should have toppings```)  
+
+We know we will need to read from toppings so let's add that to the Sandwhich object:
+```ruby
+attr_reader :taste, :toppings
+```
+
+run ```rspec```  
+Still errors... this is because our second test is checking that ```toppings``` is not empty, it must have a value in it.  
+
+In the spec file, test adding a topping:  
+```ruby
+  it 'should have toppings' do
+    toppings = @sandwhich.toppings
+    toppings << 'cheese'
+    expect(toppings).not_to be_empty
+  end
+
+```  
+
+Running ```rspec``` again should now pass
