@@ -1,4 +1,9 @@
-# RSpec testing steps
+# RSpec testing guide for Ruby
+
+## Purpose
+This repo is designed to guide students through their first RSpec tests by creating a simple application following TDD (Test Driven Development) principles.  
+The aim is to provide a better understanding of testing to use with code challenges for technical interviews.  
+This is in conjunction with the RSpec Testing Workshops with Le Wagon. 
 
 ## Setup
 
