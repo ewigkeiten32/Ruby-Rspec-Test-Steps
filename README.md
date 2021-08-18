@@ -16,3 +16,10 @@ Then in your terminal install the dependencies with
 ```bundle```  
 or   
 ```bundle install```
+
+
+```ruby
+def test(hello)
+  return hello
+end
+```
