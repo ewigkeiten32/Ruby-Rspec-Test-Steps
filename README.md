@@ -58,6 +58,7 @@ To fix this you will need to create the Sandwhich object
 
 Create a new file ```sandwhich.rb```  
 You will then need to require sandwhich.rb in your test file  
+
 At the top of spec/sandwhich.rb add:  
 ```require_relative '../sandwhich'```  
 
